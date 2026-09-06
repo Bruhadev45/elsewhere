@@ -1,5 +1,5 @@
 /**
- * Records a slow scroll-through of the site as an mp4, for sharing.
+ * Records a scroll-through of the site as an mp4, for sharing.
  *
  *   node scripts/record_walkthrough.mjs [url] [outfile]
  *
@@ -18,15 +18,17 @@ const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
 const WIDTH = 1280
 const HEIGHT = 720
 const FPS = 30
+// Scroll pace. ~24px/frame at 30fps reads as an ordinary reading scroll.
+const PX_PER_FRAME = 24
 
 // Sections worth pausing on, matched by selector, with a hold in seconds.
 const HOLDS = [
-  { selector: '.scroll-journey', at: 0.02, hold: 1.6 },
-  { selector: '.scene-band', at: 0.5, hold: 1.4 },
-  { selector: '.intro-starters', at: 0.5, hold: 1.6 },
-  { selector: '.statement', at: 0.55, hold: 1.4 },
-  { selector: '#worlds', at: 0.25, hold: 1.4 },
-  { selector: '.lower-workflow', at: 0.4, hold: 1.4 },
+  { selector: '.scroll-journey', at: 0.02, hold: 0.8 },
+  { selector: '.scene-band', at: 0.5, hold: 0.7 },
+  { selector: '.intro-starters', at: 0.5, hold: 0.8 },
+  { selector: '.statement', at: 0.55, hold: 0.8 },
+  { selector: '#worlds', at: 0.25, hold: 0.7 },
+  { selector: '.lower-workflow', at: 0.4, hold: 0.7 },
 ]
 
 const run = (cmd, args) => new Promise((resolve, reject) => {
@@ -77,7 +79,7 @@ try {
   let current = 0
   const glide = (from, to) => {
     const distance = Math.abs(to - from)
-    const steps = Math.max(24, Math.round(distance / 9))
+    const steps = Math.max(10, Math.round(distance / PX_PER_FRAME))
     for (let i = 1; i <= steps; i++) {
       const t = i / steps
       const eased = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2
@@ -90,7 +92,7 @@ try {
     current = stop.y
   }
   glide(current, total)
-  for (let i = 0; i < FPS * 2; i++) timeline.push(total)
+  for (let i = 0; i < Math.round(FPS * 1.2); i++) timeline.push(total)
 
   console.log(`page height ${total}px · ${timeline.length} frames · ~${(timeline.length / FPS).toFixed(1)}s`)
 
