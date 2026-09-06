@@ -1,0 +1,14 @@
+node_modules/
+.venv*/
+__pycache__/
+dist/
+*.tsbuildinfo
+qa/*.png
+playwright-report/
+test-results/
+.env*
+.DS_Store
+*.log
+
+# Local scratch
+qa/dev-server.log

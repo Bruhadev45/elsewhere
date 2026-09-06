@@ -1,0 +1,8 @@
+/* The journey is the page opener, so the header floats over it. */
+main>.prompt-dock{scroll-margin-top:0}
+@media(min-width:900px) and (min-height:700px){
+  .hero-site-header.site-header{position:absolute;inset:0 0 auto;height:86px;background:linear-gradient(#061b1ddb,#061b1d00);border-bottom:1px solid #e6f1dd1c}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-site-header.site-header{position:relative;background:#091713}
+}

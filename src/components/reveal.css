@@ -1,0 +1,25 @@
+.reveal-lines{display:block}
+.reveal-line{display:block;overflow:hidden;padding-bottom:.04em}
+.reveal-line>span{display:block;will-change:transform}
+
+/* A drifting band of world names, to carry momentum between sections. */
+.world-marquee{position:relative;overflow:hidden;padding:26px 0;border-top:1px solid #dbe2d2;border-bottom:1px solid #dbe2d2;background:#eef2e6}
+.world-marquee-track{display:flex;width:max-content;gap:0;animation:world-marquee 46s linear infinite}
+.world-marquee:hover .world-marquee-track{animation-play-state:paused}
+.world-marquee-run{display:flex;align-items:center;gap:38px;padding-right:38px;flex-shrink:0}
+.world-marquee-run span{display:inline-flex;align-items:center;gap:38px;font-size:23px;font-weight:500;letter-spacing:-.9px;color:#4a5f47;white-space:nowrap}
+.world-marquee-run i{width:7px;height:7px;border-radius:50%;background:#9db884;flex-shrink:0}
+.world-marquee:before,.world-marquee:after{content:'';position:absolute;top:0;bottom:0;width:110px;z-index:1;pointer-events:none}
+.world-marquee:before{left:0;background:linear-gradient(90deg,#eef2e6,#eef2e600)}
+.world-marquee:after{right:0;background:linear-gradient(270deg,#eef2e6,#eef2e600)}
+@keyframes world-marquee{to{transform:translateX(-50%)}}
+@media(max-width:700px){
+  .world-marquee{padding:19px 0}
+  .world-marquee-run{gap:26px;padding-right:26px}
+  .world-marquee-run span{gap:26px;font-size:16px;letter-spacing:-.5px}
+  .world-marquee:before,.world-marquee:after{width:52px}
+}
+@media(prefers-reduced-motion:reduce){
+  .world-marquee-track{animation:none}
+  .reveal-line>span{will-change:auto}
+}

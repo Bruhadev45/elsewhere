@@ -1,0 +1,149 @@
+.world-orb {
+  --world-orb-accent: #b9f5d8;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-height: 400px;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+  color: #e1f1e9;
+  background: radial-gradient(ellipse at 50% 42%, #123c3b70, #04111330 58%, transparent 85%);
+}
+
+.world-orb--ocean { --world-orb-accent: #b4f0fa; }
+.world-orb--city { --world-orb-accent: #cbf9c5; }
+
+.world-orb .world-orb__viewport {
+  position: absolute;
+  inset: 0 0 64px;
+  min-height: 330px;
+}
+
+.world-orb .world-orb__viewport canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  touch-action: none;
+}
+
+.world-orb .world-orb__viewport canvas.world-orb__canvas--dragging { cursor: grabbing; }
+
+.world-orb .world-orb__coordinates {
+  position: absolute;
+  inset: 22px 24px auto;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  pointer-events: none;
+  color: #b2d1c5;
+  font: 500 9px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.16em;
+}
+
+.world-orb .world-orb__footer {
+  position: absolute;
+  inset: auto 12px 17px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.world-orb .world-orb__hint {
+  margin: 0;
+  color: #b2c8bf;
+  font: 500 8px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.17em;
+  text-align: center;
+}
+
+.world-orb .world-orb__controls {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+  padding: 3px;
+  gap: 2px;
+  border: 1px solid #afd4c429;
+  border-radius: 28px;
+  background: #071c1ae6;
+  box-shadow: 0 8px 30px #0003;
+  backdrop-filter: blur(12px);
+}
+
+.world-orb .world-orb__controls button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #e3f4ec;
+  font: inherit;
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 160ms ease, background 160ms ease;
+}
+
+.world-orb .world-orb__controls .world-orb__reset,
+.world-orb .world-orb__controls .world-orb__motion {
+  width: auto;
+  padding: 0 11px;
+  border-radius: 20px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.world-orb .world-orb__controls .world-orb__motion {
+  min-width: 50px;
+  margin-left: 3px;
+  border-left: 1px solid #afd4c429;
+  border-radius: 0 20px 20px 0;
+  color: var(--world-orb-accent);
+}
+
+.world-orb .world-orb__controls button:hover:not(:disabled) { background: #c1f3da17; }
+.world-orb .world-orb__controls button:focus-visible { outline: 2px solid var(--world-orb-accent); outline-offset: 3px; }
+.world-orb .world-orb__controls button:disabled { opacity: 0.4; cursor: default; }
+
+.world-orb .world-orb__fallback {
+  position: absolute;
+  inset: 35px 15px 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.world-orb .world-orb__fallback-sphere {
+  width: 185px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 33% 28%, #7bcfb7 0, #236e64 24%, #0a363c 52%, #041319 75%);
+  box-shadow: inset -10px -12px 24px #0008, 0 0 32px #60d9b52e;
+}
+
+.world-orb--ocean .world-orb__fallback-sphere { filter: hue-rotate(28deg); }
+.world-orb--city .world-orb__fallback-sphere { filter: saturate(0.7); }
+.world-orb .world-orb__fallback p { margin: 0; color: #c1d6cb; font-size: 12px; line-height: 1.6; text-align: center; }
+
+@media (max-width: 380px) {
+  .world-orb .world-orb__controls { gap: 0; }
+  .world-orb .world-orb__controls button { width: 31px; height: 36px; }
+  .world-orb .world-orb__controls .world-orb__reset,
+  .world-orb .world-orb__controls .world-orb__motion { padding-inline: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .world-orb .world-orb__controls button { transition: none; }
+}

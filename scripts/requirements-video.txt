@@ -1,0 +1,4 @@
+# Tested with Python 3.14; ffmpeg and ffprobe must also be installed.
+Pillow==12.1.1
+numpy==2.4.2
+opencv-python-headless==5.0.0.93
