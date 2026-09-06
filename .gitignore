@@ -12,3 +12,4 @@ test-results/
 
 # Local scratch
 qa/dev-server.log
+.vercel
